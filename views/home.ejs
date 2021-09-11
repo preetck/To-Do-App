@@ -8,7 +8,9 @@
     <title>
         <%= title %>
     </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="/css/home.css">
 </head>
@@ -17,17 +19,17 @@
     <div id="app">
         <h1>Todo App</h1>
         <hr>
-        <form action="" method="POST">
+        <form action="/add-task" method="POST">
             <div class="description">
                 <label style="font-weight: bold;margin-bottom:10px">DESCRIPTION</label>
-                <input type="text" name="todo" placeholder="What do you need to do?" class="input-text">
+                <input type="text" name="task_name" placeholder="What do you need to do?" class="input-text" required>
             </div>
             <hr style="padding:0">
             <div class="category">
                 <div class="category-div">
                     <label style="font-weight: bold;">CATEGORY</label>
-                    <select name="category" id="category" style="margin-left:-4px;padding-left:0">
-                        <option value="ChooseCategory" disabled selected>Choose Category</option>
+                    <select name="category" name="category" id="category" style="margin-left:-4px;padding-left:0" required>
+                        <!-- <option value="ChooseCategory" disabled selected>Choose Category</option> -->
                         <option value="personal">Personal</option>
                         <option value="work">Work</option>
                         <option value="school">School</option>
@@ -37,7 +39,9 @@
                 </div>
                 <div class="category-div">
                     <label style="font-weight: bold;">DUE DATE</label>
-                    <input type="date" id="date">
+                    <!-- <input type="date" id="date" name="task_created" required> -->
+                    <input type="date" id="date" name="task_created" min="2018-01-01" required>
+
 
                 </div>
 
@@ -48,70 +52,64 @@
                     <i class="fas fa-plus"></i>
                     Add Task
                 </button>
-                <button type="submit" value="delete" name="delete" class="delete-button">
+                <!-- <a href="/delete-tasks"> -->
+                <button type="button" value="delete" name="delete" class="delete-button">
                     <i class="fas fa-trash-alt"></i>
                     Delete Task
                 </button>
+                <!-- </a>  -->
+                
             </div>
         </form>
         <div id="work-listing">
-            <hr style="padding:0" class="task-listing-hr">
-            <div class="task-listing">
-            
-                <div style="width:6%;padding-left:15px;">
-                    <input type="checkbox">
+            <% for(let task of tasks_list) {%>
+                <hr style="padding:0" class="task-listing-hr">
+                <div class="task-listing">
+                    <div style="width:6%;padding-left:15px;">
+                        <input type="checkbox" class="checkbox-tasks" name="task" value="<%= task._id %>">
+                    </div>
+                    <div style="width:70%">
+                        <label style="display: block;font-size:20px;letter-spacing:1px;margin-bottom:5px;">
+                            <%= task.task_name %>
+                        </label>
+                        <label>
+                            <i class="far fa-calendar-alt" style="padding-right:5px;"></i>
+                            <%= task.task_created %>
+                        </label>
+                    </div>
+                    <div
+                        style="width:20%;text-align:center;background:purple;padding-top:15px;border-radius:10px;color:white">
+                        <%= task.category %>
+                    </div>
+
                 </div>
-                <div style="width:70%">
-                    <label style="display: block;font-size:20px;letter-spacing:1px;margin-bottom:5px;" >This is a to do work.</label>
-                    <label>
-                        <i class="far fa-calendar-alt" style="padding-right:5px;"></i>
-                        I am here
-                    </label>
-                </div>
-                <div style="width:20%;text-align:center;background:purple;padding-top:15px;border-radius:10px;color:white">
-                    Work
-                </div>
-                
-            </div>
-            <hr style="padding:0" class="task-listing-hr">
-            <div class="task-listing">
-            
-                <div style="width:6%;padding-left:15px;">
-                    <input type="checkbox">
-                </div>
-                <div style="width:70%">
-                    <label style="display: block;font-size:20px;letter-spacing:1px;margin-bottom:5px;" >This is a to do work.</label>
-                    <label>
-                        <i class="far fa-calendar-alt" style="padding-right:5px;"></i>
-                        I am here
-                    </label>
-                </div>
-                <div style="width:20%;text-align:center;background:purple;padding-top:15px;border-radius:10px;color:white">
-                    Work
-                </div>
-                
-            </div>
-            <hr style="padding:0" class="task-listing-hr">
-            <div class="task-listing">
-            
-                <div style="width:6%;padding-left:15px;">
-                    <input type="checkbox">
-                </div>
-                <div style="width:70%">
-                    <label style="display: block;font-size:20px;letter-spacing:1px;margin-bottom:5px;" >This is a to do work.</label>
-                    <label>
-                        <i class="far fa-calendar-alt" style="padding-right:5px;"></i>
-                        I am here
-                    </label>
-                </div>
-                <div style="width:20%;text-align:center;background:purple;padding-top:15px;border-radius:10px;color:white">
-                    Work
-                </div>
-                
-            </div>
+            <% } %>
         </div>
-        
+
     </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+    <script>        
+        $(".delete-button").click(function(){
+            var selected = [];
+            $('.checkbox-tasks:checked').each(function() {
+                selected.push($(this).attr('value'));
+            });
+            $.ajax({
+                url:'/delete-tasks',
+                type: 'POST', 
+                data: { ids: selected },  // data to submit
+                success: function (data, status, xhr) { 
+                    console.log('Success')
+                    location.href = '/'
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                    console.log(errorMessage)
+                }
+            });
+        });
+        
+    </script>
 </body>
 
 </html>

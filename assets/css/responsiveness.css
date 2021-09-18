@@ -1,0 +1,31 @@
+@media screen and (max-width:360px){
+    .buttons{
+        flex-wrap: wrap;
+        margin-top:20px;
+    }
+    .buttons div{
+        width:100%;
+        text-align: center;
+    }
+    #app{
+        width:100%;
+        
+    }
+    #app h1{
+        padding-top:0px !important;
+    }
+    body{
+        margin:0px !important;
+        background-color: white !important;
+        /* overflow-y: hidden !important; */
+    }
+    .todo-data{
+        padding-left: 15px;
+        width: 60% !important;
+        text-align: start !important;
+    }
+    .task-listing{
+        margin-left:0;
+        width:100%;
+    }
+}

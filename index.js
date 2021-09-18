@@ -1,8 +1,10 @@
 const express = require('express');
 const router = require("./routes");
-const db = require('./config/mongoose')
 const app = express();
 const port = '8000';
+
+//Setting up Database Connection
+const db = require('./config/mongoose')
 
 //Some Middlewares 
 app.use(express.static('assets'))

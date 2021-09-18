@@ -1,3 +1,5 @@
+/* Adding CSS to add responsivity of css only for devices whose maximum 
+width is less than equal to 360 px. Devices like: Galaxy S5.*/
 @media screen and (max-width:360px){
     .buttons{
         flex-wrap: wrap;
@@ -17,7 +19,6 @@
     body{
         margin:0px !important;
         background-color: white !important;
-        /* overflow-y: hidden !important; */
     }
     .todo-data{
         padding-left: 15px;

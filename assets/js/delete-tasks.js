@@ -8,8 +8,7 @@ $(".delete-button").click(function(){
             url:'/delete-tasks',
             type: 'POST', 
             data: { ids: selected },
-            success: function (data, status) { 
-                console.log('Success')
+            success: function () { 
                 location.href = '/'
             },
             error: function (errorMessage) {
